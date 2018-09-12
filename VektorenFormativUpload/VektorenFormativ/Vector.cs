@@ -4,28 +4,70 @@ namespace VektorenFormativ
 {
     public struct Vector
     {
+        float X;
+        float Y;
+        float Z;
+
         public Vector(float _x, float _y, float _z)
         {
+            X = _x;
+            Y = _y;
+            Z = _z;
         }
 
         public static Vector operator +(Vector _a, Vector _b)
         {
+            Vector v;
+
+            v.X = _a.X + _b.X;
+            v.Y = _a.Y + _b.Y;
+            v.Z = _a.Z + _b.Z;
+
+            return v;
         }
 
         public static Vector operator -(Vector _a, Vector _b)
         {
+            Vector v;
+
+            v.X = _a.X - _b.X;
+            v.Y = _a.Y - _b.Y;
+            v.Z = _a.Z - _b.Z;
+
+            return v;
         }
 
         public static Vector operator -(Vector _a)
         {
+            Vector v;
+
+            v.X = X - _a.X;
+            v.Y = Y - _a.Y;
+            v.Z = Z - _a.Z;
+
+            return v;
         }
 
         public static Vector operator *(Vector _a, float _b)
         {
+            Vector v;
+
+            v.X = _a.X * _b;
+            v.Y = _a.Y * _b;
+            v.Z = _a.Z * _b;
+
+            return v;
         }
 
         public static Vector operator /(Vector _a, float _b)
         {
+            Vector v;
+
+            v.X = _a.X / _b;
+            v.Y = _a.Y / _b;
+            v.Z = _a.Z / _b;
+
+            return v;
         }
 
         public override bool Equals(object _obj)
@@ -37,20 +79,45 @@ namespace VektorenFormativ
             return base.GetHashCode();
         }
 
+        // mit wurzel ziehen
         public static float Magnitude(Vector _v)
         {
+            float f = SqrMagnitude(_v);
+
+            Math.Sqrt(f);
+
+            return f;
         }
 
+        // Ohne wurzel ziehen
         public static float SqrMagnitude(Vector _v)
         {
+            float f;
+
+            f = (_v.X * _v.X) + (_v.Y * _v.Y) + (_v.Z * _v.Z);
+
+            return f;
+
         }
 
         public static Vector Cross(Vector _v1, Vector _v2)
         {
+            Vector v;
+
+            v.X = _v1.Y * _v2.Z - _v2.Y * _v1.Z;
+            v.Y = _v1.Z * _v2.X - _v2.Z * _v1.X;
+            v.Z = _v1.X * _v2.Y - _v2.X * _v1.Y;
+
+            return v;
         }
 
         public static float Dot(Vector _v1, Vector _v2)
         {
+            float f;
+
+            f = _v1.X * _v2.X + _v1.Y * _v2.Y + _v1.Z * _v2.Z;
+
+            return f;
         }
 
         public static Vector Normalize(Vector _v)
