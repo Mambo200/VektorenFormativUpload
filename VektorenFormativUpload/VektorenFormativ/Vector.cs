@@ -109,6 +109,7 @@ namespace VektorenFormativ
         }
 
         // Ohne wurzel ziehen
+        // Betrag / Länge - |v|
         public static float SqrMagnitude(Vector _v)
         {
             float f;
