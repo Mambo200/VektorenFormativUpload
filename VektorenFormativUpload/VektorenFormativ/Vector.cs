@@ -41,9 +41,9 @@ namespace VektorenFormativ
         {
             Vector v;
 
-            v.X = X - _a.X;
-            v.Y = Y - _a.Y;
-            v.Z = Z - _a.Z;
+            v.X = -_a.X;
+            v.Y = -_a.Y;
+            v.Z = -_a.Z;
 
             return v;
         }
@@ -72,6 +72,24 @@ namespace VektorenFormativ
 
         public override bool Equals(object _obj)
         {
+            if (_obj == null)
+                return false;
+
+            if (this.GetHashCode() == _obj.GetHashCode())
+                return true;
+            else
+                return false;
+
+            //Vector v = new Vector();
+            //System.Type objT = _obj.GetType();
+            //System.Type vecT = v.GetType();
+            //
+            //if(objT != vecT)
+            //{
+            //    return false;
+            //}
+
+            
         }
 
         public override int GetHashCode()
@@ -80,6 +98,7 @@ namespace VektorenFormativ
         }
 
         // mit wurzel ziehen
+        // Betrag / Länge - |v|
         public static float Magnitude(Vector _v)
         {
             float f = SqrMagnitude(_v);
@@ -111,6 +130,7 @@ namespace VektorenFormativ
             return v;
         }
 
+        // Skalarprodukt
         public static float Dot(Vector _v1, Vector _v2)
         {
             float f;
@@ -120,8 +140,12 @@ namespace VektorenFormativ
             return f;
         }
 
+        // ???
         public static Vector Normalize(Vector _v)
         {
+            Vector v = _v;
+            v.X = -v.X;
+            return v;
         }
 
 		public override string ToString()

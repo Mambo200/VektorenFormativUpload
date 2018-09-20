@@ -8,10 +8,12 @@ namespace VektorenFormativ
 
         public Matrix()
         {
+            float[,] f = Values;
         }
 
         public Matrix(float[,] _values)
         {
+            float[,] f = _values;
         }
 
         public static Matrix Translate(Vector _v)
