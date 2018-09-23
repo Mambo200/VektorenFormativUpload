@@ -75,20 +75,13 @@ namespace VektorenFormativ
             if (_obj == null)
                 return false;
 
-            if (this.GetHashCode() == _obj.GetHashCode())
-                return true;
-            else
+
+            System.Type objT = _obj.GetType();
+            System.Type dis = this.GetType();
+            if(objT != dis)
+            {
                 return false;
-
-            //Vector v = new Vector();
-            //System.Type objT = _obj.GetType();
-            //System.Type vecT = v.GetType();
-            //
-            //if(objT != vecT)
-            //{
-            //    return false;
-            //}
-
+            }
             
         }
 
