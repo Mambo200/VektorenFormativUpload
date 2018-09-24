@@ -75,14 +75,26 @@ namespace VektorenFormativ
             if (_obj == null)
                 return false;
 
+            if(this.GetHashCode() == _obj.GetHashCode())
+            {
+                return true;
+            }
 
-            System.Type objT = _obj.GetType();
-            System.Type dis = this.GetType();
-            if(objT != dis)
+            if(_obj.GetType() != typeof(Vector))
             {
                 return false;
             }
-            
+
+            Vector tmp = new Vector();
+            tmp = (Vector)_obj - this;
+            if (tmp.X == 0 && tmp.Y == 0 && tmp.Z == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public override int GetHashCode()

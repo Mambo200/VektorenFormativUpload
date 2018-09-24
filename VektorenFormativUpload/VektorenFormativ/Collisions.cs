@@ -4,6 +4,7 @@
     {
         public static bool PointInCuboid(Vector _point, Cuboid _quad)
         {
+            return false;
         }
 
         public static bool PointInSphere(Vector _point, Sphere _sphere)
@@ -70,10 +71,13 @@
                 _quad2.m_Vertices[0] - _quad2.m_Vertices[1]);
             Norm[14] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[7],
                 _quad2.m_Vertices[0] - _quad2.m_Vertices[7]);
+
+            return false;
         }
 
         public static bool CuboidInSphere(Cuboid _quad, Sphere _sphere)
         {
+            return false;
         }
     }
 }
