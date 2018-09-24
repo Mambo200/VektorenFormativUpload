@@ -108,7 +108,7 @@ namespace VektorenFormativ
         {
             float f = SqrMagnitude(_v);
 
-            Math.Sqrt(f);
+            f = (float)Math.Sqrt(f);
 
             return f;
         }
@@ -150,8 +150,11 @@ namespace VektorenFormativ
         public static Vector Normalize(Vector _v)
         {
             Vector v = _v;
+            #region Nur 2D
             v.X = -v.X;
+            #endregion
             return v;
+
         }
 
 		public override string ToString()
