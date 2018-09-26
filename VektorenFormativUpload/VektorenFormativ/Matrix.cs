@@ -35,7 +35,11 @@ namespace VektorenFormativ
         {
             Matrix nm = new Matrix();
 
-            nm = RotateX(_v.X) * RotateY(_v.Y) * RotateZ(_v.Z);
+            nm = RotateX(_v.X) * RotateY(_v.Y);
+            Matrix delete = RotateZ(_v.Z);
+            //nm = nm * RotateZ(_v.Z);
+            nm = nm * delete;
+
 
             return nm;
         }
@@ -49,11 +53,11 @@ namespace VektorenFormativ
             nm.Values[0, 0] = 1;
             nm.Values[3, 3] = 1;
 
-            nm.Values[1, 1] = (float)Math.Round(Math.Cos(RadianToDegree(angle)));
-            nm.Values[1, 2] = (float)Math.Round(Math.Sin(RadianToDegree(angle)));
+            nm.Values[1, 1] = (float)Math.Round(Math.Cos(angle));
+            nm.Values[1, 2] = (float)Math.Round(Math.Sin(angle));
 
-            nm.Values[2, 1] = (float)-Math.Round(Math.Sin(RadianToDegree(angle)));
-            nm.Values[2, 2] = (float)Math.Round(Math.Cos(RadianToDegree(angle)));
+            nm.Values[2, 1] = (float)-(Math.Round(Math.Sin(angle)));
+            nm.Values[2, 2] = (float)Math.Round(Math.Cos(angle));
             return nm;
         }
 
@@ -66,11 +70,11 @@ namespace VektorenFormativ
             nm.Values[1, 1] = 1;
             nm.Values[3, 3] = 1;
 
-            nm.Values[0, 0] = (float)Math.Round(Math.Cos(RadianToDegree(angle)));
-            nm.Values[0, 2] = (float)-Math.Round(Math.Sin(RadianToDegree(angle)));
+            nm.Values[0, 0] = (float)Math.Round(Math.Cos(angle));
+            nm.Values[0, 2] = (float)-(Math.Round(Math.Sin(angle)));
 
-            nm.Values[2, 0] = (float)Math.Round(Math.Sin(RadianToDegree(angle)));
-            nm.Values[2, 2] = (float)Math.Round(Math.Cos(RadianToDegree(angle)));
+            nm.Values[2, 0] = (float)Math.Round(Math.Sin(angle));
+            nm.Values[2, 2] = (float)Math.Round(Math.Cos(angle));
             return nm;
         }
 
@@ -83,11 +87,11 @@ namespace VektorenFormativ
             nm.Values[2, 2] = 1;
             nm.Values[3, 3] = 1;
 
-            nm.Values[0, 0] = (float)Math.Round(Math.Cos(RadianToDegree(angle)));
-            nm.Values[0, 1] = (float)Math.Round(Math.Sin(RadianToDegree(angle)));
+            nm.Values[0, 1] = (float)Math.Round(Math.Sin(angle));
+            nm.Values[0, 0] = (float)Math.Round(Math.Cos(angle));
 
-            nm.Values[1, 0] = (float)-Math.Round(Math.Sin(RadianToDegree(angle)));
-            nm.Values[1, 1] = (float)Math.Round(Math.Cos(RadianToDegree(angle)));
+            nm.Values[1, 0] = (float)-(Math.Round(Math.Sin(angle)));
+            nm.Values[1, 1] = (float)Math.Round(Math.Cos(angle));
 
             return nm;
         }
