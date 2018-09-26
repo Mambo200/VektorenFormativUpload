@@ -4,9 +4,9 @@ namespace VektorenFormativ
 {
     public struct Vector
     {
-        float X;
-        float Y;
-        float Z;
+        public float X;
+        public float Y;
+        public float Z;
 
         public Vector(float _x, float _y, float _z)
         {
@@ -76,11 +76,6 @@ namespace VektorenFormativ
         {
             if (_obj == null)
                 return false;
-
-            if(this.GetHashCode() == _obj.GetHashCode())
-            {
-                return true;
-            }
 
             if(_obj.GetType() != typeof(Vector))
             {
