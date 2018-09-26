@@ -15,6 +15,7 @@ namespace VektorenFormativ
             Z = _z;
         }
 
+        #region operator
         public static Vector operator +(Vector _a, Vector _b)
         {
             Vector v;
@@ -69,6 +70,7 @@ namespace VektorenFormativ
 
             return v;
         }
+        #endregion
 
         public override bool Equals(object _obj)
         {
@@ -150,9 +152,9 @@ namespace VektorenFormativ
         public static Vector Normalize(Vector _v)
         {
             Vector v = _v;
-            #region Nur 2D
-            v.X = -v.X;
-            #endregion
+
+            v = _v / Magnitude(_v);
+
             return v;
 
         }
