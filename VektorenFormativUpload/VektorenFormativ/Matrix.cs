@@ -18,30 +18,44 @@ namespace VektorenFormativ
 
         public static Matrix Translate(Vector _v)
         {
+            Matrix delete = new Matrix();
+            return delete;
         }
 
         public static Matrix Rotation(Vector _v)
         {
+            Matrix delete = new Matrix();
+            return delete;
         }
 
         private static Matrix RotateX(float _x)
         {
+            Matrix delete = new Matrix();
+            return delete;
         }
 
         private static Matrix RotateY(float _y)
         {
+            Matrix delete = new Matrix();
+            return delete;
         }
 
         private static Matrix RotateZ(float _z)
         {
+            Matrix delete = new Matrix();
+            return delete;
         }
 
         public static Matrix Scale(Vector _v)
         {
+            Matrix delete = new Matrix();
+            return delete;
         }
 
         public static Matrix TRS(Vector _pos, Vector _rot, Vector _scale)
         {
+            Matrix delete = new Matrix();
+            return delete;
         }
 
         public static Matrix operator *(Matrix _m1, Matrix _m2)
@@ -65,6 +79,8 @@ namespace VektorenFormativ
 
         public static Vector operator *(Matrix _m, Vector _v)
         {
+            Vector delete = new Vector();
+            return delete;
         }
 
         // new
