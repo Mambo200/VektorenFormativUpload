@@ -4,7 +4,42 @@
     {
         public static bool PointInCuboid(Vector _point, Cuboid _quad)
         {
-            return false;
+            bool collide = false;
+            
+
+            // prepare to normalize - A
+            Vector norm;
+            norm = Vector.Cross(
+                _quad.m_Vertices[1] - _quad.m_Vertices[0],
+                _quad.m_Vertices[3] - _quad.m_Vertices[0]
+                );
+
+            collide = NormNCompare(_point, norm, _quad);
+            if (collide == false)
+                return false;
+
+
+            // prepare for normalize - B
+            norm = Vector.Cross(
+                _quad.m_Vertices[1] - _quad.m_Vertices[0],
+                _quad.m_Vertices[7] - _quad.m_Vertices[0]
+                );
+
+            collide = NormNCompare(_point, norm, _quad);
+            if (collide == false)
+                return false;
+
+            // prepare to normalize - C
+            norm = Vector.Cross(
+                _quad.m_Vertices[3] - _quad.m_Vertices[0],
+                _quad.m_Vertices[7] - _quad.m_Vertices[0]
+                );
+
+            collide = NormNCompare(_point, norm, _quad);
+            if (collide == false)
+                return false;
+
+            return true;
         }
 
         public static bool PointInSphere(Vector _point, Sphere _sphere)
@@ -78,6 +113,53 @@
         public static bool CuboidInSphere(Cuboid _quad, Sphere _sphere)
         {
             return false;
+        }
+
+        /// <summary>
+        /// Norms the n compare.
+        /// </summary>
+        /// <param name="_point">The point.</param>
+        /// <param name="_normNotNormalized">The norm not normalized.</param>
+        /// <param name="_quad">The Cube</param>
+        /// <returns>Colide yes or no</returns>
+        private static bool NormNCompare(Vector _point, Vector _normNotNormalized, Cuboid _quad)
+        {
+            float[] compare = new float[8];
+            float min = float.MaxValue;
+            float max = float.MinValue;
+            float point;
+
+            // normalize
+            _normNotNormalized = Vector.Normalize(_normNotNormalized);
+
+            // get P_i
+            for (int i = 0; i < compare.GetLength(0); i++)
+            {
+                compare[i] = (Vector.Dot((_quad.m_Vertices[i]), _normNotNormalized)) / Vector.Magnitude(_normNotNormalized);
+            }
+
+            // set min/max
+            for (int i = 0; i < compare.GetLength(0); i++)
+            {
+                if (compare[i] < min)
+                {
+                    min = compare[i];
+                }
+
+                if (compare[i] > max)
+                {
+                    max = compare[i];
+                }
+            }
+
+            point = Vector.Dot(_point, _normNotNormalized);
+
+            if (point < min && point > max)
+            {
+                return false;
+            }
+            else
+                return true;
         }
     }
 }
