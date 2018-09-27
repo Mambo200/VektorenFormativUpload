@@ -24,9 +24,9 @@ namespace VektorenFormativ
             nm.Values[2, 2] = 1;
             nm.Values[3, 3] = 1;
 
-            nm.Values[0, 3] = _v.X;
-            nm.Values[1, 3] = _v.Y;
-            nm.Values[2, 3] = _v.Z;
+            nm.Values[3, 0] = _v.X;
+            nm.Values[3, 1] = _v.Y;
+            nm.Values[3, 2] = _v.Z;
 
             return nm;
         }
@@ -112,7 +112,7 @@ namespace VektorenFormativ
         {
             Matrix nm = new Matrix();
 
-            nm = Translate(_pos) * Rotation(_rot) * Scale(_scale);
+            nm = Scale(_scale) * Rotation(_rot) * Translate(_pos);
 
             return nm;
         }
@@ -254,13 +254,13 @@ namespace VektorenFormativ
         {
             Vector nv = new Vector();
 
-            //nv.X = (_m.Values[0, 0] * _v.X) + (_m.Values[1, 0] * _v.Y) + (_m.Values[2, 0] * _v.Z) + (_m.Values[3, 0] * 1);
-            //nv.Y = (_m.Values[0, 1] * _v.X) + (_m.Values[1, 1] * _v.Y) + (_m.Values[2, 1] * _v.Z) + (_m.Values[3, 1] * 1);
-            //nv.Z = (_m.Values[0, 2] * _v.X) + (_m.Values[1, 2] * _v.Y) + (_m.Values[2, 2] * _v.Z) + (_m.Values[3, 2] * 1);
+            nv.X = (_m.Values[0, 0] * _v.X) + (_m.Values[1, 0] * _v.Y) + (_m.Values[2, 0] * _v.Z) + (_m.Values[3, 0] * 1);
+            nv.Y = (_m.Values[0, 1] * _v.X) + (_m.Values[1, 1] * _v.Y) + (_m.Values[2, 1] * _v.Z) + (_m.Values[3, 1] * 1);
+            nv.Z = (_m.Values[0, 2] * _v.X) + (_m.Values[1, 2] * _v.Y) + (_m.Values[2, 2] * _v.Z) + (_m.Values[3, 2] * 1);
 
-            nv.X = (_m.Values[0, 0] * _v.X) + (_m.Values[0, 1] * _v.Y) + (_m.Values[0, 2] * _v.Z) + (_m.Values[0, 3] * 1);
-            nv.Y = (_m.Values[1, 0] * _v.X) + (_m.Values[1, 1] * _v.Y) + (_m.Values[1, 2] * _v.Z) + (_m.Values[1, 3] * 1);
-            nv.Z = (_m.Values[2, 0] * _v.X) + (_m.Values[2, 1] * _v.Y) + (_m.Values[2, 2] * _v.Z) + (_m.Values[2, 3] * 1);
+            //nv.X = (_m.Values[0, 0] * _v.X) + (_m.Values[0, 1] * _v.Y) + (_m.Values[0, 2] * _v.Z) + (_m.Values[0, 3] * 1);
+            //nv.Y = (_m.Values[1, 0] * _v.X) + (_m.Values[1, 1] * _v.Y) + (_m.Values[1, 2] * _v.Z) + (_m.Values[1, 3] * 1);
+            //nv.Z = (_m.Values[2, 0] * _v.X) + (_m.Values[2, 1] * _v.Y) + (_m.Values[2, 2] * _v.Z) + (_m.Values[2, 3] * 1);
 
 
             return nv;
@@ -313,7 +313,7 @@ namespace VektorenFormativ
             {
                 for (int y = 0; y < _m.Values.GetLength(1); y++)
                 {
-                    _m.Values[x, y] = nm.Values[y, x];
+                    nm.Values[x, y] = _m.Values[y, x];
                 }
             }
 
