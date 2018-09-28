@@ -158,5 +158,18 @@ namespace VektorenFormativ
         {
             return string.Format("({0}, {1}, {2})", X, Y, Z);
         }
+
+        public static Vector NormalizeNormalize(Vector _v)
+        {
+            Vector nv = new Vector();
+            float n = _v.X + _v.Y + _v.Z;
+            n = (float)Math.Sqrt(n);
+
+            nv.X = _v.X / n;
+            nv.Y = _v.Y / n;
+            nv.Z = _v.Z / n;
+
+            return nv;
+        }
     }
 }
