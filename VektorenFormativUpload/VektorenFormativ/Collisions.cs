@@ -14,7 +14,10 @@
                 _quad.m_Vertices[3] - _quad.m_Vertices[0]
                 );
 
-            collide = NormNCompare(_point, norm, _quad);
+            // normalize
+            norm = Vector.Normalize(norm);
+
+            collide = Collision(_point, norm, _quad);
             if (collide == false)
                 return false;
 
@@ -25,7 +28,10 @@
                 _quad.m_Vertices[7] - _quad.m_Vertices[0]
                 );
 
-            collide = NormNCompare(_point, norm, _quad);
+            // normalize
+            norm = Vector.Normalize(norm);
+
+            collide = Collision(_point, norm, _quad);
             if (collide == false)
                 return false;
 
@@ -35,7 +41,10 @@
                 _quad.m_Vertices[7] - _quad.m_Vertices[0]
                 );
 
-            collide = NormNCompare(_point, norm, _quad);
+            // normalize
+            norm = Vector.Normalize(norm);
+
+            collide = Collision(_point, norm, _quad);
             if (collide == false)
                 return false;
 
@@ -56,9 +65,16 @@
         public static bool SphereInSphere(Sphere _sphere1, Sphere _sphere2)
         {
             Vector vMagn = _sphere1.m_Center - _sphere2.m_Center;
-            float fMagnSqr = Vector.SqrMagnitude(vMagn);
+            //float fMagnSqr = Vector.SqrMagnitude(vMagn);
+            //
+            //if (fMagnSqr <= (_sphere1.m_Radius * _sphere1.m_Radius + _sphere2.m_Radius * _sphere2.m_Radius))
+            //    return true;
+            //else
+            //    return false;
 
-            if (fMagnSqr <= (_sphere1.m_Radius * _sphere1.m_Radius + _sphere2.m_Radius * _sphere2.m_Radius))
+            float fMagn = Vector.Magnitude(vMagn);
+
+            if (fMagn <= _sphere1.m_Radius + _sphere2.m_Radius)
                 return true;
             else
                 return false;
@@ -116,26 +132,25 @@
         }
 
         /// <summary>
-        /// Norms the n compare.
+        /// Check Collision of Cube and Point - Extension.
         /// </summary>
         /// <param name="_point">The point.</param>
-        /// <param name="_normNotNormalized">The norm not normalized.</param>
+        /// <param name="_norm">The norm.</param>
         /// <param name="_quad">The Cube</param>
         /// <returns>Colide yes or no</returns>
-        private static bool NormNCompare(Vector _point, Vector _normNotNormalized, Cuboid _quad)
+        private static bool Collision(Vector _point, Vector _norm, Cuboid _quad)
         {
             float[] compare = new float[8];
             float min = float.MaxValue;
             float max = float.MinValue;
             float point;
 
-            // normalize
-            _normNotNormalized = Vector.Normalize(_normNotNormalized);
 
             // get P_i
             for (int i = 0; i < compare.GetLength(0); i++)
             {
-                compare[i] = (Vector.Dot((_quad.m_Vertices[i]), _normNotNormalized)) / Vector.Magnitude(_normNotNormalized);
+                //compare[i] = (Vector.Dot((_quad.m_Vertices[i]), _norm)) / Vector.Magnitude(_norm);
+                compare[i] = Vector.Dot(_quad.m_Vertices[i], _norm);
             }
 
             // set min/max
@@ -152,14 +167,12 @@
                 }
             }
 
-            point = Vector.Dot(_point, _normNotNormalized);
+            point = Vector.Dot(_point, _norm);
 
-            if (point < min && point > max)
-            {
-                return false;
-            }
-            else
+            if (min <= point && point <= max)
                 return true;
+            else
+                return false;
         }
     }
 }
