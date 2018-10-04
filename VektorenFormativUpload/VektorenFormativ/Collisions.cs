@@ -136,28 +136,43 @@
 
         public static bool CuboidInSphere(Cuboid _quad, Sphere _sphere)
         {
-            Vector[] Norm = new Vector[3];
+            Vector norm = new Vector();
+            bool collide = true;
 
             // prepare for normalize - A
-            Norm[0] = Vector.Cross(
-                _quad.m_Vertices[3] - _quad.m_Vertices[0],
-                _sphere.m_Center
-                );
-
-            // prepare for normalize - B
-            Norm[1] = Vector.Cross(
-                _quad.m_Vertices[3] - _quad.m_Vertices[0],
-                _sphere.m_Center
-                );
-
-            // prepare to normalize - C
-            Norm[2] = Vector.Cross(
+            norm = Vector.Cross(
                 _quad.m_Vertices[1] - _quad.m_Vertices[0],
                 _sphere.m_Center
                 );
+            norm = Vector.Normalize(norm);
+            collide = Collision(norm, _quad, _sphere);
 
+            if (collide == false)
+                return false;
 
-            return false;
+            // prepare for normalize - B
+            norm = Vector.Cross(
+                _quad.m_Vertices[3] - _quad.m_Vertices[0],
+                _sphere.m_Center
+                );
+            norm = Vector.Normalize(norm);
+            collide = Collision(norm, _quad, _sphere);
+
+            if (collide == false)
+                return false;
+
+            // prepare to normalize - C
+            norm = Vector.Cross(
+                _quad.m_Vertices[4] - _quad.m_Vertices[0],
+                _sphere.m_Center
+                );
+            norm = Vector.Normalize(norm);
+            collide = Collision(norm, _quad, _sphere);
+
+            if (collide == false)
+                return false;
+
+            return true;
         }
 
         /// <summary>
@@ -210,7 +225,7 @@
         /// <param name="_norm">The norm</param>
         /// <param name="_quad1">first Cube</param>
         /// <param name="_quad2">second Cube</param>
-        /// <returns></returns>
+        /// <returns>Colide</returns>
         private static bool Collision(Vector _norm, Cuboid _quad1, Cuboid _quad2)
         {
             float[] compare1 = new float[8];
@@ -317,6 +332,63 @@
             //}
             //return false;
             #endregion
+        }
+
+        /// <summary>
+        /// Check Collision of Cube and Sphere
+        /// </summary>
+        /// <param name="_norm">Norm</param>
+        /// <param name="_quad">Cube</param>
+        /// <param name="_sphere">Sphere</param>
+        /// <returns>Colide</returns>
+        private static bool Collision(Vector _norm, Cuboid _quad, Sphere _sphere)
+        {
+            float[] compare1 = new float[8];
+            float compare2 = 0;
+            float min1 = float.MaxValue;
+            float min2 = float.MaxValue;
+            float max1 = float.MinValue;
+            float max2 = float.MinValue;
+
+            #region Cube
+            // get P_i of first Cube
+            for (int i = 0; i < compare1.GetLength(0); i++)
+            {
+                //compare[i] = (Vector.Dot((_quad.m_Vertices[i]), _norm)) / Vector.Magnitude(_norm);
+                compare1[i] = Vector.Dot(_quad.m_Vertices[i], _norm);
+            }
+
+            // set min/max
+            for (int i = 0; i < compare1.GetLength(0); i++)
+            {
+                if (compare1[i] < min1)
+                {
+                    min1 = compare1[i];
+                }
+
+                if (compare1[i] > max1)
+                {
+                    max1 = compare1[i];
+                }
+            }
+            #endregion
+
+            #region Sphere
+            // N of Sphere
+            compare2 = Vector.Dot(_sphere.m_Center, _norm);
+
+            // set min/max
+            min2 = compare2 - _sphere.m_Radius;
+            max2 = compare2 + _sphere.m_Radius;
+
+            if ((max1 >= min2 && max1 <= max2) ||
+                (max2 >= min1 && max2 <= max1))
+                return true;
+            else
+                return false;
+
+            #endregion
+
         }
     }
 }

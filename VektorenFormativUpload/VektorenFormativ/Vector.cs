@@ -148,7 +148,10 @@ namespace VektorenFormativ
         {
             Vector v = _v;
 
-            v = _v / Magnitude(_v);
+            if (v.X == 0 && v.Y == 0 && v.Z == 0)
+                return v;
+            else
+                v = _v / Magnitude(_v);
 
             return v;
 
