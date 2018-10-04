@@ -10,8 +10,8 @@
             // prepare to normalize - A
             Vector norm;
             norm = Vector.Cross(
-                _quad.m_Vertices[1] - _quad.m_Vertices[0],
-                _quad.m_Vertices[3] - _quad.m_Vertices[0]
+                _quad.m_Vertices[3] - _quad.m_Vertices[0],
+                _quad.m_Vertices[1] - _quad.m_Vertices[0]
                 );
 
             // normalize
@@ -24,8 +24,8 @@
 
             // prepare for normalize - B
             norm = Vector.Cross(
-                _quad.m_Vertices[1] - _quad.m_Vertices[0],
-                _quad.m_Vertices[7] - _quad.m_Vertices[0]
+                _quad.m_Vertices[3] - _quad.m_Vertices[0],
+                _quad.m_Vertices[4] - _quad.m_Vertices[0]
                 );
 
             // normalize
@@ -37,8 +37,8 @@
 
             // prepare to normalize - C
             norm = Vector.Cross(
-                _quad.m_Vertices[3] - _quad.m_Vertices[0],
-                _quad.m_Vertices[7] - _quad.m_Vertices[0]
+                _quad.m_Vertices[1] - _quad.m_Vertices[0],
+                _quad.m_Vertices[4] - _quad.m_Vertices[0]
                 );
 
             // normalize
@@ -91,38 +91,38 @@
             Vector[] Norm = new Vector[15];
             Vector[,] NormMath = new Vector[15, 2];
 
-            Norm[0] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[1],
-                _quad1.m_Vertices[0] - _quad1.m_Vertices[3]);
-            Norm[1] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[6],
-                _quad1.m_Vertices[1] - _quad1.m_Vertices[2]);
-            Norm[2] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[2],
-                _quad1.m_Vertices[3] - _quad1.m_Vertices[4]);
+            Norm[0] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+                _quad1.m_Vertices[1] - _quad1.m_Vertices[0]);
+            Norm[1] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+                _quad1.m_Vertices[4] - _quad1.m_Vertices[0]);
+            Norm[2] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+                _quad1.m_Vertices[4] - _quad1.m_Vertices[0]);
 
-            Norm[3] = Vector.Cross(_quad2.m_Vertices[0] - _quad2.m_Vertices[1],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[3]);
-            Norm[4] = Vector.Cross(_quad2.m_Vertices[1] - _quad2.m_Vertices[6],
-                _quad2.m_Vertices[1] - _quad2.m_Vertices[2]);
-            Norm[5] = Vector.Cross(_quad2.m_Vertices[3] - _quad2.m_Vertices[2],
-                _quad2.m_Vertices[3] - _quad2.m_Vertices[4]);
+            Norm[3] = Vector.Cross(_quad2.m_Vertices[3] - _quad2.m_Vertices[0],
+                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            Norm[4] = Vector.Cross(_quad2.m_Vertices[3] - _quad2.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            Norm[5] = Vector.Cross(_quad2.m_Vertices[1] - _quad2.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
 
-            Norm[6] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[3],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[3]);
-            Norm[7] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[3],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[1]);
-            Norm[8] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[3],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[7]);
-            Norm[9] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[1],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[3]);
-            Norm[10] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[1],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[1]);
-            Norm[11] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[1],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[7]);
-            Norm[12] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[7],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[3]);
-            Norm[13] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[7],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[1]);
-            Norm[14] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[7],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[7]);
+            Norm[6] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
+            Norm[7] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            Norm[8] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            Norm[9] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
+            Norm[10] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            Norm[11] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            Norm[12] = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
+            Norm[13] = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            Norm[14] = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
 
             for(int i = 0; i < Norm.GetLength(0); i++)
             {
@@ -136,7 +136,43 @@
 
         public static bool CuboidInSphere(Cuboid _quad, Sphere _sphere)
         {
-            return false;
+            Vector norm = new Vector();
+            bool collide = true;
+
+            // prepare for normalize - A
+            norm = Vector.Cross(
+                _quad.m_Vertices[1] - _quad.m_Vertices[0],
+                _sphere.m_Center
+                );
+            norm = Vector.Normalize(norm);
+            collide = Collision(norm, _quad, _sphere);
+
+            if (collide == false)
+                return false;
+
+            // prepare for normalize - B
+            norm = Vector.Cross(
+                _quad.m_Vertices[3] - _quad.m_Vertices[0],
+                _sphere.m_Center
+                );
+            norm = Vector.Normalize(norm);
+            collide = Collision(norm, _quad, _sphere);
+
+            if (collide == false)
+                return false;
+
+            // prepare to normalize - C
+            norm = Vector.Cross(
+                _quad.m_Vertices[4] - _quad.m_Vertices[0],
+                _sphere.m_Center
+                );
+            norm = Vector.Normalize(norm);
+            collide = Collision(norm, _quad, _sphere);
+
+            if (collide == false)
+                return false;
+
+            return true;
         }
 
         /// <summary>
@@ -189,7 +225,7 @@
         /// <param name="_norm">The norm</param>
         /// <param name="_quad1">first Cube</param>
         /// <param name="_quad2">second Cube</param>
-        /// <returns></returns>
+        /// <returns>Colide</returns>
         private static bool Collision(Vector _norm, Cuboid _quad1, Cuboid _quad2)
         {
             float[] compare1 = new float[8];
@@ -296,6 +332,63 @@
             //}
             //return false;
             #endregion
+        }
+
+        /// <summary>
+        /// Check Collision of Cube and Sphere
+        /// </summary>
+        /// <param name="_norm">Norm</param>
+        /// <param name="_quad">Cube</param>
+        /// <param name="_sphere">Sphere</param>
+        /// <returns>Colide</returns>
+        private static bool Collision(Vector _norm, Cuboid _quad, Sphere _sphere)
+        {
+            float[] compare1 = new float[8];
+            float compare2 = 0;
+            float min1 = float.MaxValue;
+            float min2 = float.MaxValue;
+            float max1 = float.MinValue;
+            float max2 = float.MinValue;
+
+            #region Cube
+            // get P_i of first Cube
+            for (int i = 0; i < compare1.GetLength(0); i++)
+            {
+                //compare[i] = (Vector.Dot((_quad.m_Vertices[i]), _norm)) / Vector.Magnitude(_norm);
+                compare1[i] = Vector.Dot(_quad.m_Vertices[i], _norm);
+            }
+
+            // set min/max
+            for (int i = 0; i < compare1.GetLength(0); i++)
+            {
+                if (compare1[i] < min1)
+                {
+                    min1 = compare1[i];
+                }
+
+                if (compare1[i] > max1)
+                {
+                    max1 = compare1[i];
+                }
+            }
+            #endregion
+
+            #region Sphere
+            // N of Sphere
+            compare2 = Vector.Dot(_sphere.m_Center, _norm);
+
+            // set min/max
+            min2 = compare2 - _sphere.m_Radius;
+            max2 = compare2 + _sphere.m_Radius;
+
+            if ((max1 >= min2 && max1 <= max2) ||
+                (max2 >= min1 && max2 <= max1))
+                return true;
+            else
+                return false;
+
+            #endregion
+
         }
     }
 }

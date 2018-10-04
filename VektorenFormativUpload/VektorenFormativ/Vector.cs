@@ -148,7 +148,10 @@ namespace VektorenFormativ
         {
             Vector v = _v;
 
-            v = _v / Magnitude(_v);
+            if (v.X == 0 && v.Y == 0 && v.Z == 0)
+                return v;
+            else
+                v = _v / Magnitude(_v);
 
             return v;
 
@@ -159,15 +162,29 @@ namespace VektorenFormativ
             return string.Format("({0}, {1}, {2})", X, Y, Z);
         }
 
-        public static Vector NormalizeNormalize(Vector _v)
+        /// <summary>
+        /// Normalisiert die Normale
+        /// </summary>
+        /// <param name="normalize">Normale</param>
+        /// <param name="_round">true: Zahl runden | false: nicht runden</param>
+        /// <returns>normalisierte normale</returns>
+        public static Vector NormalizeNormalize(Vector normalize, bool _round)
         {
             Vector nv = new Vector();
-            float n = _v.X + _v.Y + _v.Z;
+            float n = normalize.X + normalize.Y + normalize.Z;
             n = (float)Math.Sqrt(n);
 
-            nv.X = _v.X / n;
-            nv.Y = _v.Y / n;
-            nv.Z = _v.Z / n;
+            nv.X = normalize.X / n;
+            nv.Y = normalize.Y / n;
+            nv.Z = normalize.Z / n;
+
+            // Runden
+            if(_round)
+            {
+                nv.X = (float)Math.Round(nv.X);
+                nv.Y = (float)Math.Round(nv.Y);
+                nv.Z = (float)Math.Round(nv.Z);
+            }
 
             return nv;
         }
