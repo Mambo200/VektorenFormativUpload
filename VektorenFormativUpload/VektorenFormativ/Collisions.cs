@@ -10,8 +10,8 @@
             // prepare to normalize - A
             Vector norm;
             norm = Vector.Cross(
-                _quad.m_Vertices[1] - _quad.m_Vertices[0],
-                _quad.m_Vertices[3] - _quad.m_Vertices[0]
+                _quad.m_Vertices[3] - _quad.m_Vertices[0],
+                _quad.m_Vertices[1] - _quad.m_Vertices[0]
                 );
 
             // normalize
@@ -24,8 +24,8 @@
 
             // prepare for normalize - B
             norm = Vector.Cross(
-                _quad.m_Vertices[1] - _quad.m_Vertices[0],
-                _quad.m_Vertices[7] - _quad.m_Vertices[0]
+                _quad.m_Vertices[3] - _quad.m_Vertices[0],
+                _quad.m_Vertices[4] - _quad.m_Vertices[0]
                 );
 
             // normalize
@@ -37,8 +37,8 @@
 
             // prepare to normalize - C
             norm = Vector.Cross(
-                _quad.m_Vertices[3] - _quad.m_Vertices[0],
-                _quad.m_Vertices[7] - _quad.m_Vertices[0]
+                _quad.m_Vertices[1] - _quad.m_Vertices[0],
+                _quad.m_Vertices[4] - _quad.m_Vertices[0]
                 );
 
             // normalize
@@ -91,38 +91,38 @@
             Vector[] Norm = new Vector[15];
             Vector[,] NormMath = new Vector[15, 2];
 
-            Norm[0] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[1],
-                _quad1.m_Vertices[0] - _quad1.m_Vertices[3]);
-            Norm[1] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[6],
-                _quad1.m_Vertices[1] - _quad1.m_Vertices[2]);
-            Norm[2] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[2],
-                _quad1.m_Vertices[3] - _quad1.m_Vertices[4]);
+            Norm[0] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+                _quad1.m_Vertices[1] - _quad1.m_Vertices[0]);
+            Norm[1] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+                _quad1.m_Vertices[4] - _quad1.m_Vertices[0]);
+            Norm[2] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+                _quad1.m_Vertices[4] - _quad1.m_Vertices[0]);
 
-            Norm[3] = Vector.Cross(_quad2.m_Vertices[0] - _quad2.m_Vertices[1],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[3]);
-            Norm[4] = Vector.Cross(_quad2.m_Vertices[1] - _quad2.m_Vertices[6],
-                _quad2.m_Vertices[1] - _quad2.m_Vertices[2]);
-            Norm[5] = Vector.Cross(_quad2.m_Vertices[3] - _quad2.m_Vertices[2],
-                _quad2.m_Vertices[3] - _quad2.m_Vertices[4]);
+            Norm[3] = Vector.Cross(_quad2.m_Vertices[3] - _quad2.m_Vertices[0],
+                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            Norm[4] = Vector.Cross(_quad2.m_Vertices[3] - _quad2.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            Norm[5] = Vector.Cross(_quad2.m_Vertices[1] - _quad2.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
 
-            Norm[6] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[3],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[3]);
-            Norm[7] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[3],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[1]);
-            Norm[8] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[3],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[7]);
-            Norm[9] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[1],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[3]);
-            Norm[10] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[1],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[1]);
-            Norm[11] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[1],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[7]);
-            Norm[12] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[7],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[3]);
-            Norm[13] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[7],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[1]);
-            Norm[14] = Vector.Cross(_quad1.m_Vertices[0] - _quad1.m_Vertices[7],
-                _quad2.m_Vertices[0] - _quad2.m_Vertices[7]);
+            Norm[6] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
+            Norm[7] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            Norm[8] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            Norm[9] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
+            Norm[10] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            Norm[11] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            Norm[12] = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
+            Norm[13] = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            Norm[14] = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
 
             for(int i = 0; i < Norm.GetLength(0); i++)
             {
@@ -136,6 +136,27 @@
 
         public static bool CuboidInSphere(Cuboid _quad, Sphere _sphere)
         {
+            Vector[] Norm = new Vector[3];
+
+            // prepare for normalize - A
+            Norm[0] = Vector.Cross(
+                _quad.m_Vertices[3] - _quad.m_Vertices[0],
+                _sphere.m_Center
+                );
+
+            // prepare for normalize - B
+            Norm[1] = Vector.Cross(
+                _quad.m_Vertices[3] - _quad.m_Vertices[0],
+                _sphere.m_Center
+                );
+
+            // prepare to normalize - C
+            Norm[2] = Vector.Cross(
+                _quad.m_Vertices[1] - _quad.m_Vertices[0],
+                _sphere.m_Center
+                );
+
+
             return false;
         }
 

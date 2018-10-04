@@ -4,6 +4,10 @@
     {
         public readonly Vector[] m_Vertices = new Vector[8];
 
+        public Cuboid()
+        {
+        }
+
         /// <summary>
         /// Im Uhrzeigersinn von unten nach oben angeben
         /// </summary>
