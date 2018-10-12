@@ -142,7 +142,7 @@
             // prepare for normalize - A
             norm = Vector.Cross(
                 _quad.m_Vertices[1] - _quad.m_Vertices[0],
-                _sphere.m_Center
+                _quad.m_Vertices[3] - _quad.m_Vertices[0]
                 );
             norm = Vector.Normalize(norm);
             collide = Collision(norm, _quad, _sphere);
@@ -152,8 +152,8 @@
 
             // prepare for normalize - B
             norm = Vector.Cross(
-                _quad.m_Vertices[3] - _quad.m_Vertices[0],
-                _sphere.m_Center
+                _quad.m_Vertices[4] - _quad.m_Vertices[0],
+                _quad.m_Vertices[3] - _quad.m_Vertices[0]
                 );
             norm = Vector.Normalize(norm);
             collide = Collision(norm, _quad, _sphere);
@@ -164,7 +164,7 @@
             // prepare to normalize - C
             norm = Vector.Cross(
                 _quad.m_Vertices[4] - _quad.m_Vertices[0],
-                _sphere.m_Center
+                _quad.m_Vertices[1] - _quad.m_Vertices[0]
                 );
             norm = Vector.Normalize(norm);
             collide = Collision(norm, _quad, _sphere);
@@ -381,8 +381,8 @@
             min2 = compare2 - _sphere.m_Radius;
             max2 = compare2 + _sphere.m_Radius;
 
-            if ((max1 >= min2 && max1 <= max2) ||
-                (max2 >= min1 && max2 <= max1))
+            if ((max1 > min2 && max1 < max2) ||
+                (max2 > min1 && max2 < max1))
                 return true;
             else
                 return false;
