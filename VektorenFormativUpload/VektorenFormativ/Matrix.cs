@@ -119,8 +119,8 @@ namespace VektorenFormativ
 
         public static Matrix operator *(Matrix _m1, Matrix _m2)
         {
-            float tmp = 0;
             Matrix nm = new Matrix();
+            //float tmp = 0;
             //for (int x = 0; x < _m2.Values.GetLength(0); x++)
             //{
             //    for (int y = 0; y < _m1.Values.GetLength(1); y++)
