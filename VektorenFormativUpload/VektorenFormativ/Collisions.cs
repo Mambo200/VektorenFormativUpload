@@ -82,54 +82,131 @@
 
         public static bool CuboidInCuboid(Cuboid _quad1, Cuboid _quad2)
         {
-            // [1, -] first Cuboid
-            // [2, -] second Cuboid
-            float[,] Cube = new float[2, 8];
-            bool collide = true;
+            //bool collide = true;
 
             // Normalzie Variables
-            Vector[] Norm = new Vector[15];
-            Vector[,] NormMath = new Vector[15, 2];
+            //Vector[] Norm = new Vector[15];
 
-            Norm[0] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+            Vector norm = new Vector();
+
+            // Würfel 1
+            norm = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
                 _quad1.m_Vertices[1] - _quad1.m_Vertices[0]);
-            Norm[1] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
+
+            norm = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
                 _quad1.m_Vertices[4] - _quad1.m_Vertices[0]);
-            Norm[2] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
+
+            norm = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
                 _quad1.m_Vertices[4] - _quad1.m_Vertices[0]);
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
 
-            Norm[3] = Vector.Cross(_quad2.m_Vertices[3] - _quad2.m_Vertices[0],
+            // Würfel 2
+            norm = Vector.Cross(_quad2.m_Vertices[3] - _quad2.m_Vertices[0],
                 _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
-            Norm[4] = Vector.Cross(_quad2.m_Vertices[3] - _quad2.m_Vertices[0],
-                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
-            Norm[5] = Vector.Cross(_quad2.m_Vertices[1] - _quad2.m_Vertices[0],
-                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
 
-            Norm[6] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
-                _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
-            Norm[7] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
-                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
-            Norm[8] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+            norm = Vector.Cross(_quad2.m_Vertices[3] - _quad2.m_Vertices[0],
                 _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
-            Norm[9] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
-                _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
-            Norm[10] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
-                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
-            Norm[11] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
-                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
-            Norm[12] = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
-                _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
-            Norm[13] = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
-                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
-            Norm[14] = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
-                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
 
-            for(int i = 0; i < Norm.GetLength(0); i++)
-            {
-                collide = Collision(Norm[i], _quad1, _quad2);
-                if (collide == false)
-                    return false;
-            }
+            norm = Vector.Cross(_quad2.m_Vertices[1] - _quad2.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
+
+            // Würfel 1 und 2
+            norm = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
+
+            norm = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
+
+            norm = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
+
+            norm = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
+
+            norm = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
+
+            norm = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
+
+            norm = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
+
+            norm = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
+
+            norm = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
+                _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            if ((Collision(norm, _quad1, _quad2)) == false)
+                return false;
+
+
+            //Norm[0] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+            //    _quad1.m_Vertices[1] - _quad1.m_Vertices[0]);
+            //Norm[1] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+            //    _quad1.m_Vertices[4] - _quad1.m_Vertices[0]);
+            //Norm[2] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+            //    _quad1.m_Vertices[4] - _quad1.m_Vertices[0]);
+            //
+            //Norm[3] = Vector.Cross(_quad2.m_Vertices[3] - _quad2.m_Vertices[0],
+            //    _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            //Norm[4] = Vector.Cross(_quad2.m_Vertices[3] - _quad2.m_Vertices[0],
+            //    _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            //Norm[5] = Vector.Cross(_quad2.m_Vertices[1] - _quad2.m_Vertices[0],
+            //    _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            //
+            //Norm[6] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+            //    _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
+            //Norm[7] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+            //    _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            //Norm[8] = Vector.Cross(_quad1.m_Vertices[3] - _quad1.m_Vertices[0],
+            //    _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            //Norm[9] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+            //    _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
+            //Norm[10] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+            //    _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            //Norm[11] = Vector.Cross(_quad1.m_Vertices[1] - _quad1.m_Vertices[0],
+            //    _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+            //Norm[12] = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
+            //    _quad2.m_Vertices[3] - _quad2.m_Vertices[0]);
+            //Norm[13] = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
+            //    _quad2.m_Vertices[1] - _quad2.m_Vertices[0]);
+            //Norm[14] = Vector.Cross(_quad1.m_Vertices[4] - _quad1.m_Vertices[0],
+            //    _quad2.m_Vertices[4] - _quad2.m_Vertices[0]);
+
+            //for (int i = 0; i < Norm.GetLength(0); i++)
+            //{
+            //    collide = Collision(Norm[i], _quad1, _quad2);
+            //    if (collide == false)
+            //        return false;
+            //}
 
             return true;
         }
